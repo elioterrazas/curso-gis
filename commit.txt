@@ -1,0 +1,11 @@
+commit d5be2ad971d78b0307af3f90b9e73b7fd6415913
+Author: ElioTerrazasB <elioterrazas@gmail.com>
+Date:   Mon Jun 19 00:47:55 2017 -0400
+
+    siguite modificacion prueba
+
+commit 47866633bab8487bc02bf3d4d0dfc61e792f35bd
+Author: ElioTerrazasB <elioterrazas@gmail.com>
+Date:   Mon Jun 19 00:36:54 2017 -0400
+
+    primera subida del avance de la clase 02
