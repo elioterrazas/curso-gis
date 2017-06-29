@@ -5,6 +5,9 @@
 	<title>Visor Simple OpenLayers</title>
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/openlayers/2.12/theme/default/style.min.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/openlayers/2.12/OpenLayers.min.js"></script>
+
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxjW7T35q_LQNOgzsJBxVhirmd5k-4NoA&callback&callback=initMap"
+  type="text/javascript"></script>
 	<style type="text/css">
 		html.body {
 			height: 100%;
@@ -32,15 +35,25 @@
 			var controlNavegacion = new OpenLayers.Control.Navigation();
 			var controlZoom = new OpenLayers.Control.PanZoomBar();
 			//var controlZoom = new OpenLayers.Control.Zoom();
+
+			//propiedades del objeto Map
 			var propiedades = {
 				projection: proyeccion,
 				units: 'm',
 				controls:[controlNavegacion, controlZoom]
 			};
+
+			//Creacion de una instancia de la clase Map
 			var map = new OpenLayers.Map("mapa", propiedades);
+			
+			//Capa OSM
 			var layerOSM=new OpenLayers.Layer.OSM();
 			map.addLayer(layerOSM);
 
+			//capa google
+			var layerGoogleSatelital= new OpenLayers.Layer.Google("Google Satelital",{type:google.maps.MapTypeId.SATELLITE});
+			//Satelital",{type:google.maps.MapTypeId.TIPYMAP});TIPYMAP ES EL TIPO DE MAPA
+			map.addLayer(layerGoogleSatelital);
 
 		}
 		//cargamos la funcion init. para desplegar el mapa

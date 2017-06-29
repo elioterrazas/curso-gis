@@ -9,3 +9,15 @@ Author: ElioTerrazasB <elioterrazas@gmail.com>
 Date:   Mon Jun 19 00:36:54 2017 -0400
 
     primera subida del avance de la clase 02
+
+
+
+api de google
+https://maps.googleapis.com/maps/api/js
+obtener una llave key para usar esta api de la siguiente pagina
+https://developers.google.com/maps/documentation/javascript/get-api-key
+pero tambien podemos reemplazar la url de la "api de google" y cambiarla por la que esta en la pagina
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"
+  type="text/javascript"></script>
+y donde dice your_API_KEY reemplazar por nuestra llave conseguida.
+pero la llave la podemos conseguir de la misma pagina "https://developers.google.com/maps/documentation/javascript/get-api-key" donde esta el boton "obtener una clave"
