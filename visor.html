@@ -23,7 +23,7 @@
 			color: white;
 		}
 		#mapa{
-			height: 300px;
+			height: 450px;
 			width:600px;
 			border:solid 3px darkblue;
 		}
@@ -43,9 +43,24 @@
 				units: 'm',
 				controls:[controlNavegacion, controlZoom]
 			};
-
 			//Creacion de una instancia de la clase Map
 			var map = new OpenLayers.Map("mapa", propiedades);
+
+			//Control de cambio de capas
+			var controlCapas= new OpenLayers.Control.LayerSwitcher();
+			map.addControl(controlCapas);
+			
+			//Control de posicion del Cursor//para ver la longitud latitud del cursor
+			var controlCursor = new OpenLayers.Control.MousePosition();
+			map.addControl(controlCursor);
+
+			
+
+			//Control Minimapa
+			var controlMiniMapa = new OpenLayers.Control.OverviewMap();
+			map.addControl(controlMiniMapa);
+
+			
 			
 			//Capa OSM
 			var layerOSM=new OpenLayers.Layer.OSM();
@@ -67,10 +82,7 @@
 			var layerStamen= new OpenLayers.Layer.Stamen("toner-lite");
 			map.addLayer(layerStamen);
 
-			//Control de cambio de capas
-			var controlCapas= new OpenLayers.Control.LayerSwitcher();
-			map.addControl(controlCapas);
-
+			
 			//Capa MapBox //provedor de mapas base
 			layerMapBox = new OpenLayers.Layer.XYZ('MapBox', [
              				    
