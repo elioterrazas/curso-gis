@@ -32,7 +32,8 @@
 
 	<script type="text/javascript">
 		var init= function(){
-			var proyeccion = new OpenLayers.Projection("EPSG:4326");//EPSG:900913
+			//var proyeccion = new OpenLayers.Projection("EPSG:4326");//
+			var proyeccion = new OpenLayers.Projection("EPSG:900913");//EPSG:900913
 			var controlNavegacion = new OpenLayers.Control.Navigation();
 			var controlZoom = new OpenLayers.Control.PanZoomBar();
 			//var controlZoom = new OpenLayers.Control.Zoom();
@@ -98,7 +99,37 @@
         	});
 			map.addLayer(layerMapBox);
 
+			//Capas utilizando servicios web WMS (Web Map Service)
+			var nombreWMS="Limites departamentales";
+			var urlWMS="http://geo.gob.bo/geoserver/wms";
+			var propiedadesWMS={
+				layers: "fondos:departamento1",//capa a visualizar, ESTA REQUIERE SI O SI PROYECCION EPSG:900913
+				//layers: "universidades:id_aymara",
+				transparent:true
+			}
+			var layerDepartamentos = new OpenLayers.Layer.WMS(
+				nombreWMS,//nombre del layer
+				urlWMS,//URL del servicio 
+				propiedadesWMS
+			);
+			map.addLayer(layerDepartamentos);
+
+			//Configuracion para mostrar la region de Bolivia centrada al cargar el mapa
+			//con ayuda de la web http://www.latlong.net/ obtubimos estos datos
+			//nota: en openLayers pasamos primero la longitud y luego la latitud pero en librerias de google se le pasa primero la latitud y luego la longitud
+			//lon=-64.841309, lat=-16.942529//bolivia
+			//parametros setCenter(lonlat y zoom)
+			var LonLat=new OpenLayers.LonLat(-64.841309,-16.942529);//pero estos datos no estan transformados asi q nos dara otra ubicacion
+			var LonLatTransformado=LonLat.transform(
+				new OpenLayers.Projection("EPSG:4326"),
+				//new OpenLayers.Projection("EPSG:900913")//o tambien podemos usar la funcion que jala proyeccion del map
+				map.getProjection()
+			)
+			var zoom=5;
+			map.setCenter(LonLatTransformado, zoom);
+
 		}
+
 		//cargamos la funcion init. para desplegar el mapa
 		window.onload=init;
 	</script>
