@@ -64,12 +64,28 @@
 			//map.addLayer(layerGoogleSatelital);
 
 			//Capas Stamen
-			var layerStamen= new OpenLayers.Layer.Stamen("toner");
+			var layerStamen= new OpenLayers.Layer.Stamen("toner-lite");
 			map.addLayer(layerStamen);
 
 			//Control de cambio de capas
 			var controlCapas= new OpenLayers.Control.LayerSwitcher();
 			map.addControl(controlCapas);
+
+			//Capa MapBox //provedor de mapas base
+			layerMapBox = new OpenLayers.Layer.XYZ('MapBox', [
+             				    
+			    "http://b.tiles.mapbox.com/v3/isawnyu.map-knmctlkh/${z}/${x}/${y}.png",
+            	"http://c.tiles.mapbox.com/v3/isawnyu.map-knmctlkh/${z}/${x}/${y}.png",
+            	"http://d.tiles.mapbox.com/v3/isawnyu.map-knmctlkh/${z}/${x}/${y}.png"
+			], 
+			{
+            	sphericalMercator: true,
+            	//tileSize: new OpenLayers.Size([512, 512]),
+            	wrapDateLine: true,
+        		numZoomLevels: 19
+        	});
+			map.addLayer(layerMapBox);
+
 		}
 		//cargamos la funcion init. para desplegar el mapa
 		window.onload=init;
