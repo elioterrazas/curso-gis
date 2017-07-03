@@ -42,7 +42,8 @@
 			var propiedades = {
 				projection: proyeccion,
 				units: 'm',
-				controls:[controlNavegacion, controlZoom]
+				controls:[controlNavegacion, controlZoom],
+				numZoomLevels:21
 			};
 			//Creacion de una instancia de la clase Map
 			var map = new OpenLayers.Map("mapa", propiedades);
