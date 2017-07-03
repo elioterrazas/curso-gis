@@ -115,6 +115,7 @@
 				propiedadesDistritosWMS
 			);
 			map.addLayer(layerDistritosLaPaz);
+			layerDistritosLaPaz.setVisibility(false);
 
 
 			//Capas utilizando servicios web WMS (Web Map Service)
@@ -125,10 +126,14 @@
 				//layers: "universidades:id_aymara",
 				transparent:true
 			}
+			var propiedadesWMS2={
+				visibility:false
+			}
 			var layerDepartamentos = new OpenLayers.Layer.WMS(
 				nombreWMS,//nombre del layer
 				urlWMS,//URL del servicio 
-				propiedadesWMS
+				propiedadesWMS,
+				propiedadesWMS2
 			);
 			map.addLayer(layerDepartamentos);
 
