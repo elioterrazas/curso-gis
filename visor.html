@@ -107,6 +107,18 @@
 				//layers: "universidades:id_aymara",
 				transparent:true
 			}
+			//nueva capa gamlp
+			//Capas utilizando servicios web WMS (Web Map Service)
+			/*var nombreWMS="Distritos Catastrales GAMLP";
+			var urlWMS="http://192.168.42.88:8080/geoserver/wms";
+			var propiedadesWMS={
+				layers: "curso-gis:distritoscatastrales",//capa a visualizar, ESTA REQUIERE SI O SI PROYECCION EPSG:900913
+				//layers: "universidades:id_aymara",
+				transparent:true
+
+			}*/
+
+
 			var layerDepartamentos = new OpenLayers.Layer.WMS(
 				nombreWMS,//nombre del layer
 				urlWMS,//URL del servicio 
