@@ -137,6 +137,21 @@
 			);
 			map.addLayer(layerDepartamentos);
 
+			//capa proyecto
+			//Capas utilizando servicios web WMS pero de mi maquina virtual de mi geoserver (Web Map Service)
+			var nombreClientesWMS="Clientes";
+			var urlClientesWMS="http://192.168.42.88:8080/geoserver/wms";
+			var propiedadesClientesWMS={
+				layers: "curso-gis:clientes",
+				transparent:true
+			};
+			var layerClientesBolivia = new OpenLayers.Layer.WMS(
+				nombreClientesWMS,
+				urlClientesWMS,
+				propiedadesClientesWMS
+			);
+			map.addLayer(layerClientesBolivia);
+			layerClientesBolivia.setVisibility(false);
 
 
 			//Configuracion para mostrar la region de Bolivia centrada al cargar el mapa
