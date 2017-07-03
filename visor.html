@@ -37,6 +37,7 @@
 			var controlNavegacion = new OpenLayers.Control.Navigation();
 			var controlZoom = new OpenLayers.Control.PanZoomBar();
 			//var controlZoom = new OpenLayers.Control.Zoom();
+			var host="http://192.168.42.88";
 
 			//propiedades del objeto Map
 			var propiedades = {
@@ -104,7 +105,7 @@
 			//nueva capa gamlp
 			//Capas utilizando servicios web WMS pero de mi maquina virtual de mi geoserver (Web Map Service)
 			var nombreDistritosWMS="Distritos Catastrales GAMLP";
-			var urlDistritosWMS="http://192.168.42.88:8080/geoserver/wms";
+			var urlDistritosWMS= host + ":8080/geoserver/wms";
 			var propiedadesDistritosWMS={
 				layers: "curso-gis:distritoscatastrales",
 				transparent:true
@@ -140,7 +141,7 @@
 			//capa proyecto
 			//Capas utilizando servicios web WMS pero de mi maquina virtual de mi geoserver (Web Map Service)
 			var nombreClientesWMS="Clientes";
-			var urlClientesWMS="http://192.168.42.88:8080/geoserver/wms";
+			var urlClientesWMS=host + ":8080/geoserver/wms";
 			var propiedadesClientesWMS={
 				layers: "curso-gis:clientes",
 				transparent:true
@@ -153,6 +154,30 @@
 			map.addLayer(layerClientesBolivia);
 			layerClientesBolivia.setVisibility(false);
 
+
+
+			var	controlInfo = new OpenLayers.Control.WMSGetFeatureInfo({
+				queryVisible: true,
+				eventListeners: {
+					getfeatureinfo: function (event){
+						var popup = new OpenLayers.Popup.FramedCloud(
+							'Popup',
+							map.getLonLatFromPixel(event.xy),
+							null,
+							event.text,
+							null,
+							true
+						);
+						map.addPopup(popup);
+
+						var info = document.getElementById("informacion");
+						var posicion = map.getLonLatFromPixel(event.xy);
+						info.innerHTML = posicion.lon +" | "+ posicion.lat;
+					}
+				}
+			});
+			map.addControl(controlInfo);
+			controlInfo.activate();
 
 			//Configuracion para mostrar la region de Bolivia centrada al cargar el mapa
 			//con ayuda de la web http://www.latlong.net/ obtubimos estos datos
@@ -179,5 +204,15 @@
 	<h2>Visor Simple OpenLayers</h2>
 </div>
 <div id="mapa"></div>
+
+<div id="informacion"></div>
+	
+
+	<hr>
+	<form action="upload.php" method="post" enctype="multipart/form-data">
+    Seleccione los archivos a subir:
+    <input type="file" name="myFile[]" multiple id="myFile">
+    <input type="submit" value="Upload File" name="submit">
+    </form>
 </body>
 </html>
